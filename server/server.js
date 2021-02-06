@@ -10,9 +10,9 @@ const app = express();
 // compress all responses to optimize page load speed
 app.use(compression());
 
-app.use(cors({
-  origin: 'http://54.157.193.11:8000/',
-}));
+// app.use(cors({
+//   origin: 'http://54.157.193.11:8000/',
+// }));
 
 app.use('/bundle', cors(), express.static(path.join(__dirname, '/../client/public/bundle.js')));
 app.use('/', cors(), express.static(path.join(__dirname, '/../client/public')));

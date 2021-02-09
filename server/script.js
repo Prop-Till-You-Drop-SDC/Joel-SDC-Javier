@@ -4,18 +4,19 @@ import { Rate } from 'k6/metrics';
 let errorRate = new Rate('errorRate')
 
 export let options = {
-  discardResponseBodies: true,
+  discardResponseBodies: false,
   scenarios: {
     contacts: {
       executor: 'ramping-arrival-rate',
       startRate: 1,
       timeUnit: '1s',
       preAllocatedVUs: 100,
-      maxVUs: 500,
+      maxVUs: 2000,
       stages: [
-        { target: 10, duration: '30s' },
-        { target: 100, duration: '30s' },
-        { target: 200, duration: '30s' },
+        // { target: 10, duration: '30s' },
+        // { target: 100, duration: '30s' },
+        // { target: 1000, duration: '30s' },
+        { target: 2000, duration: '30s' },
 
       ]
     }
@@ -23,7 +24,7 @@ export let options = {
 }
 export default function () {
   let random = Math.floor(Math.random() * 2000000) + 1
-  let res = http.get(`http://localhost:3002/reviews/${random}`, { tags: { name: 'ReviewsURL' } });
+  let res = http.get(`http://localhost:8080/reviews/${random}`, { tags: { name: 'ReviewsURL' } });
 
 
   errorRate.add(res.status >= 400)

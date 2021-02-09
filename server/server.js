@@ -31,7 +31,7 @@ app.get('/reviews/:id', (req, res) => {
   })
 })
 
-const PORT = 3002;
+const PORT = 8080;
 
 app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);

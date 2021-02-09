@@ -6,8 +6,8 @@
   "scripts": {
     "server": "node server.js",
     "dev_server": "nodemon server.js",
-    "config": "mysql -u javier -p < schema.sql",
-    "seed": "node seed/seed.js",
+    "csv": "node server/mongoDB/dataGenerate.js",
+    "seedMongoReviews": "mongoimport -d local -c reviews --type csv --file reviews1.csv --headerline && mongoimport -d local -c reviews --type csv --file reviews2.csv --headerline",
     "test": "jest --runInBand"
   },
   "keywords": [],
@@ -21,10 +21,13 @@
     "express": "^4.17.1",
     "faker": "^5.1.0",
     "fast-csv": "^4.3.6",
+    "mongodb": "^3.6.4",
     "mongoose": "^5.11.15",
     "mysql": "^2.18.1",
+    "newrelic": "^7.1.1",
     "objects-to-csv": "^1.3.6",
     "random-avatar-generator": "^2.0.0",
+    "request": "^2.88.2",
     "split": "^1.0.1"
   },
   "devDependencies": {

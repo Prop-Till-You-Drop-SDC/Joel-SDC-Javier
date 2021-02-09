@@ -1,9 +1,9 @@
-/* eslint-disable import/extensions */
 import React from 'react';
 import ReviewAvgs from './ReviewAvgs.jsx';
 import LatestReviews from './LatestReviews.jsx';
 import ReviewsModal from './ReviewsModal.jsx';
 import styles from '../styles/app.module.css';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,27 +19,26 @@ class App extends React.Component {
 
   componentDidMount() {
     const getRand = (min, max) => Math.floor(Math.random() * (max - min) + min);
+    console.time('fetch');
+    axios.get(`/reviews/${getRand(1, 2000000)}`).then((data) => {
+      console.timeEnd('fetch');
+      console.log(data.data);
+      const sortedData = data.data.sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+      );
 
-    fetch(`/reviews/${getRand(1, 100)}`)
-      // fetch(`/reviews/${getRand(1, 100)}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        const sortedData = data.reviews.sort(
-          (a, b) => new Date(b.date) - new Date(a.date)
-        );
-        const avg = this.averages(data);
-        this.setState({
-          reviews: sortedData,
-          averages: avg,
-          tags: data.reviews[0].tags,
-        });
+      const avg = this.averages(data);
+      this.setState({
+        reviews: sortedData,
+        averages: avg,
       });
+    });
   }
 
   // eslint-disable-next-line class-methods-use-this
   averages(data) {
-    const allReviews = data.reviews;
+    const allReviews = data.data;
+    console.log('allReviews:', allReviews);
     const totalReviewsCount = allReviews.length;
 
     const value = {

@@ -1,14 +1,14 @@
 // const { Address, db } = require('../mongoDB')
 const { MongoClient } = require('mongodb');
 
-var url = "mongodb://localhost:27017/";
+var url = "mongodb://joel:secretPassword@18.217.214.70/admin";
 
 
 
 const findOne = (id, cb) => {
   MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     if (err) throw err;
-    var dbo = db.db("local");
+    var dbo = db.db("admin");
     var query = { location_id: Number(id) };
     dbo.collection("reviews").find(query).toArray((err, result) => {
       if (err) throw err

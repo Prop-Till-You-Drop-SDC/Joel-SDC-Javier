@@ -34,5 +34,5 @@ app.get('/reviews/:id', (req, res) => {
 const PORT = 8080;
 
 app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`);
+  console.log(`Server listening on http://18.217.214.70:${PORT}`);
 });

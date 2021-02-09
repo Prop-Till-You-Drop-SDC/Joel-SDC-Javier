@@ -7,7 +7,7 @@
     "server": "node server.js",
     "dev_server": "nodemon server.js",
     "csv": "node server/mongoDB/dataGenerate.js",
-    "seedMongoReviews": "mongoimport -d local -c reviews --type csv --file reviews1.csv --headerline && mongoimport -d local -c reviews --type csv --file reviews2.csv --headerline",
+    "seedMongoReviews": "mongoimport -d local -c reviews --type csv --file reviews1.csv --headerline",
     "test": "jest --runInBand"
   },
   "keywords": [],

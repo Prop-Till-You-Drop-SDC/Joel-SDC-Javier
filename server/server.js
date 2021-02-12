@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 require('newrelic');
+require('dotenv').config()
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -31,8 +32,8 @@ app.get('/reviews/:id', (req, res) => {
   })
 })
 
-const PORT = 8080;
+const PORT = 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server listening on http://18.217.214.70:${PORT}`);
+  console.log(`Server listening on port: ${PORT}`);
 });

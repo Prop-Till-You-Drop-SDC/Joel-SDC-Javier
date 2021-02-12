@@ -1,7 +1,7 @@
 // const { Address, db } = require('../mongoDB')
 const { MongoClient } = require('mongodb');
 
-var url = "mongodb://joel:secretPassword@18.217.214.70/admin";
+var url = "mongodb://joel:secretPassword@18.218.234.55:27017/";
 
 
 
@@ -9,7 +9,7 @@ const findOne = (id, cb) => {
   MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     if (err) throw err;
     var dbo = db.db("admin");
-    var query = { location_id: Number(id) };
+    var query = { location_id: (id) };
     dbo.collection("reviews").find(query).toArray((err, result) => {
       if (err) throw err
       cb(result)

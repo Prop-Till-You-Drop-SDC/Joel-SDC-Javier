@@ -11,12 +11,11 @@ export let options = {
       startRate: 1,
       timeUnit: '1s',
       preAllocatedVUs: 100,
-      maxVUs: 2000,
+      maxVUs: 1000,
       stages: [
         { target: 10, duration: '30s' },
         { target: 100, duration: '30s' },
         { target: 1000, duration: '30s' },
-        { target: 2000, duration: '30s' },
       ]
     }
   }
